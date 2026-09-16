@@ -17,6 +17,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by Rajan Maurya on 06/03/17.
@@ -56,6 +57,7 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationMvpVi
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoanApplicationPresenter: error loading loan template");
                         getMvpView().hideProgress();
                         getMvpView().showError("failed to load template");
                     }
@@ -82,6 +84,8 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationMvpVi
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoanApplicationPresenter: error loading loan template "
+                                + "by product");
                         getMvpView().hideProgress();
                         getMvpView().showError("failed to load template");
                     }
@@ -109,6 +113,7 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationMvpVi
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoanApplicationPresenter: error creating loan account");
                         getMvpView().hideProgress();
                         getMvpView().showError(MFErrorParser.errorMessage(e));
                     }

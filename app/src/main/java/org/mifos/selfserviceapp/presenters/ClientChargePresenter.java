@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * @author Vishwajeet
@@ -67,6 +68,7 @@ public class ClientChargePresenter extends BasePresenter<ClientChargeView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "ClientChargePresenter: error fetching client charges");
                         getMvpView().hideProgress();
                         getMvpView().showErrorFetchingClientCharges(
                                 context.getString(R.string.error_client_charge_loading));
@@ -95,6 +97,7 @@ public class ClientChargePresenter extends BasePresenter<ClientChargeView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "ClientChargePresenter: error fetching client local charges");
                         getMvpView().showErrorFetchingClientCharges(
                                 context.getString(R.string.error_client_charge_loading));
                     }

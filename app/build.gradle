@@ -67,4 +67,7 @@ dependencies {
     //Butter Knife
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    //Timber
+    compile 'com.jakewharton.timber:timber:4.7.1'
 }

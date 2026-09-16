@@ -24,6 +24,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.plugins.RxJavaPlugins;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * @author Vishwajeet
@@ -88,6 +89,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
                         @Override
                         public void onError(Throwable e) {
+                            Timber.e(e, "LoginPresenter: error logging in");
                             getMvpView().hideProgress();
                             String errorMessage;
                             try {
@@ -137,6 +139,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoginPresenter: error fetching client");
                         getMvpView().showMessage(context.getString(R.string.error_fetching_client));
                         getMvpView().hideProgress();
                     }

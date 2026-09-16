@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by Rajan Maurya on 03/03/17.
@@ -57,6 +58,8 @@ public class LoanRepaymentSchedulePresenter extends BasePresenter<LoanRepaymentS
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoanRepaymentSchedulePresenter: error fetching repayment "
+                                + "schedule");
                         getMvpView().hideProgress();
                         getMvpView().showError(context
                                 .getString(R.string.error_fetching_repayment_schedule));
