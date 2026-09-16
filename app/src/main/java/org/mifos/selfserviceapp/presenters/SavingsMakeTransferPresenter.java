@@ -25,6 +25,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by Rajan Maurya on 10/03/17.
@@ -66,6 +67,8 @@ public class SavingsMakeTransferPresenter extends BasePresenter<SavingsMakeTrans
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "SavingsMakeTransferPresenter: error fetching account "
+                                + "transfer template");
                         getMvpView().hideProgress();
                         getMvpView().showError(context.getString(
                                 R.string.error_fetching_account_transfer_template));
@@ -94,6 +97,7 @@ public class SavingsMakeTransferPresenter extends BasePresenter<SavingsMakeTrans
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "SavingsMakeTransferPresenter: error making transfer");
                         getMvpView().hideProgressDialog();
                         getMvpView().showError(MFErrorParser.errorMessage(e));
                     }

@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * @author Vishwajeet
@@ -75,6 +76,8 @@ public class RecentTransactionsPresenter extends BasePresenter<RecentTransaction
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "RecentTransactionsPresenter: error fetching recent "
+                                + "transactions");
                         getMvpView().hideProgress();
                         getMvpView().showErrorFetchingRecentTransactions(
                                 context.getString(R.string.error_recent_transactions_loading));

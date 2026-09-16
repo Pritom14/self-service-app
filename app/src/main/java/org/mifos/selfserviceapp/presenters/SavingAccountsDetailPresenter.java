@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * @author Vishwajeet
@@ -74,6 +75,8 @@ public class SavingAccountsDetailPresenter extends BasePresenter<SavingAccountsD
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "SavingAccountsDetailPresenter: error fetching saving "
+                                + "account details");
                         getMvpView().hideProgress();
                         getMvpView().showErrorFetchingSavingAccountsDetail(
                                 context.getString(R.string.error_saving_account_details_loading));

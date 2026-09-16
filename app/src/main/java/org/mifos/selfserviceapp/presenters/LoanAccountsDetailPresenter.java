@@ -15,6 +15,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * @author Vishwajeet
@@ -71,6 +72,8 @@ public class LoanAccountsDetailPresenter extends BasePresenter<LoanAccountsDetai
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "LoanAccountsDetailPresenter: error fetching loan account "
+                                + "details");
                         getMvpView().hideProgress();
                         getMvpView().showErrorFetchingLoanAccountsDetail(
                                 context.getString(R.string.error_loan_account_details_loading));

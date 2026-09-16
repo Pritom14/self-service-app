@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by Rajan Maurya on 23/10/16.
@@ -58,6 +59,7 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "AccountsPresenter: error fetching client accounts");
                         getMvpView().hideProgress();
                         getMvpView().showError(context.getString(R.string.error_fetching_accounts));
                     }
@@ -87,6 +89,8 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "AccountsPresenter: error fetching accounts of type "
+                                + accountType);
                         getMvpView().hideProgress();
                         getMvpView().showError(context.getString(R.string.error_fetching_accounts));
                     }

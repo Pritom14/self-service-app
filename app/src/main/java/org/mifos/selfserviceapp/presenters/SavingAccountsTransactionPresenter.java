@@ -22,6 +22,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by dilpreet on 6/3/17.
@@ -68,6 +69,8 @@ public class SavingAccountsTransactionPresenter extends
 
                     @Override
                     public void onError(Throwable e) {
+                        Timber.e(e, "SavingAccountsTransactionPresenter: error fetching saving "
+                                + "account transactions");
                         getMvpView().hideProgress();
                         getMvpView().showErrorFetchingSavingAccountsDetail(
                                 context.getString(R.string.error_saving_account_details_loading));
